@@ -1,9 +1,6 @@
 
 const BASE_URL = "https://dummyjson.com";
 
-// https://dummyjson.com/products
-// UTILITY BASED
-
 function qs(element){
   const htmlElement = document.querySelector(element);
   return htmlElement;
@@ -37,26 +34,15 @@ async function putItems(endpoint, bodyObject){
   return updatedItem;
 }
 
-// async function testFunction(){
-//   const updatedProduct = await putItems("products/5", {
-//     title: "Selam"
-//   });
-//   console.log(updatedProduct);
-// }
-
-// testFunction();
-
 
 const productsBox = qs("#products");
 
 async function editProduct(e){
   const productId = parseInt(e.target.dataset.productid);
   
-  const answer = prompt("Güncellemek istediğin başlık nedir?");
-  const updatedProduct = await putItems(`products/${productId}`, {
-    title: answer,
-  })
-  e.target.parentElement.querySelector("span").textContent = updatedProduct.title;
+  const answer = prompt("İçeriği ile değiştirmek istersiniz?");
+  const updatedProduct = await putItems(`products/${productId}`, {title: answer})
+  e.target.parentElement.previousElementSibling.querySelector("p").innerText = updatedProduct.title;
 }
 
 function deleteProduct(e){
@@ -69,7 +55,7 @@ async function listProducts(){
   const products = items.products;
   console.log(products);
   for (const product of products) {
-    productsBox.innerHTML += `<li data-productid="${product.id}"><span>${product.title}</span> <button data-productid="${product.id}" class="edit-btn">Düzenle</button> <button data-productid="${product.id}" class="delete-btn">Sil</button></li>`
+    productsBox.innerHTML += `<li data-productid="${product.id}"><p>${product.title}</p> <div class="buttons"><button data-productid="${product.id}" class="edit-btn">Düzenle</button> <button data-productid="${product.id}" class="delete-btn">Sil</button></div></li>`
   }
   bindEvents(".edit-btn", "click", editProduct);
   bindEvents(".delete-btn", "click", deleteProduct);
