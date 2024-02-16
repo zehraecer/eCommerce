@@ -1,0 +1,292 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 1110px;
+    font-family: "Kumbh Sans", sans-serif;
+    margin: 0 auto;
+
+}
+
+
+
+.container{
+   padding-top: 30px;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #E4E9F2;
+}
+.header-navBar{
+    display: flex;
+    gap: 50px;
+
+    img{
+        width: 137.5px;
+        height: 20px;
+   
+
+   }
+    a{
+        text-align: center;
+        text-decoration: none;
+        color: #69707D;
+        font-size: 15px;
+    }
+    
+}
+a:active{
+    border-bottom: 4px solid #FF7E1B;
+    color: black;
+}
+.header-sag{
+    display: flex;
+    gap: 45px;
+    margin-bottom: 20px;
+    .sepet img{
+        width: 21.82px;
+        height: 20px;
+    }
+   
+}
+
+.header-sag{
+
+   .profil img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+    .profil:active{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 3.5px solid #FF7E1B;
+
+    }
+ 
+}
+
+.myDiv-homePage{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding-top: 20px;
+    a{
+        text-decoration: none;
+
+    }
+
+    .myHtml{
+        margin: 30px;
+        height: 330px;
+        width: 300px;
+        /* padding: 30px; */
+        border-radius: 10px;
+        box-shadow: 20px 20px 50px 10px rgb(250, 202, 180) inset;
+    }
+    img{
+        height: 120px;
+        width: 120px;
+        object-fit:fill;
+        border-radius: 20px;
+        margin-left: 90px;
+        margin-top: 10px;
+    }
+    h5{
+        margin-top: 20px;
+        margin-left: 50px;
+        width: 200px;
+        padding: 10px;
+        font-size: 10px;
+        line-height: 18px;
+        color: #69707D;
+    }
+    h4{
+        margin-left: 80px;
+        text-transform: uppercase;
+        margin-top: 15px;
+        color: #FF7E1B;
+
+    }
+    h2{
+        margin-left: 100px;
+        margin-top: 15px;
+        color: black;
+
+    }
+}
+/* .ikinciSayfa{
+    .myDiv{
+        display: flex;
+        margin-top: 90px;
+        gap: 125px;
+    }
+    .smallFotos{
+        display: flex;
+        margin-top: 32px;
+        gap: 31px;
+        img{
+            width: 88px; 
+            height: 88px;
+            border-radius: 10px;
+    
+        }
+    
+        img:active{
+            opacity: 0.5;
+        }
+    }
+    .bigFoto img{
+        width: 445px;
+        height: 445px;
+        border-radius: 17px;
+        
+    }
+    
+    .myDiv-right{
+        margin-top: 60px;
+        
+    
+       .sneaker{
+            font-family: Kumbh Sans;
+            font-size: 11px;
+            font-weight: 700;
+            color: #FF7E1B;
+            letter-spacing: 1.5px;
+            
+    
+        }
+        .fall{
+            width: 445px;
+            height: 96px;
+            margin-top: 27px;
+            font-family: Kumbh Sans;
+            font-size: 44px;
+            font-weight: 700;
+            line-height: 48px;        
+    
+        }
+    
+        .these{
+            margin-top: 32px;
+            width: 445px;
+            height: 78px;
+            font-family: Kumbh Sans;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 26px;
+            color: #69707D;
+        }
+    }
+    .price{
+        display: flex;
+        width: 173px;
+        height: 68px;
+        margin-top: 28px;
+        gap: 16px;
+        h3{
+            font-family: Kumbh Sans;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        h4{
+            color: #B6BCC8;
+            font-family: Kumbh Sans;
+            font-size: 16px;
+            font-weight: 700;
+            padding-top: 10px;
+        }
+        .discounte{
+            width: 51px;
+           height: 27px;
+           border: none;
+           background-color: #FFEEE2;
+           border-radius: 6px;
+           color: #FF7E1B;
+           font-family: 'Kumbh Sans';
+           font-weight: 700;
+           font-size: 16px;
+           margin-top: 5px;
+           
+        }
+    
+    }
+    
+    
+    .addToBasket{
+        display: flex;
+        margin-top: 32px;
+        gap: 16px;
+        h5{
+            width:10px;
+        }
+    }
+    .total{
+        display: flex;
+        width: 157px;
+        height: 56px;
+        justify-content: space-around;
+        background: #F6F8FD;
+        border-radius: 10px;
+    
+        
+        h5{
+          text-align: center;
+          padding-top: 16px;
+          font-weight: 700;
+          font-size: 20px;
+    
+    
+        }
+    
+        button{
+            border: none;
+            background: #F6F8FD;
+            width: 50px;
+            height: 50px;
+            text-decoration: line-through;
+        }
+        button:active{
+            opacity: 0.6;
+        }
+        span{
+            color: #FF7E1B;
+           font-family: 'Kumbh Sans';
+           font-weight: 700;
+           font-size: 26px;
+        }
+    
+    }
+    .basket{
+        display: flex;
+        width: 272px;
+        height: 56px;
+        color: #FFFFFF;
+        background-color: #FF7E1B;
+        gap: 17px;
+        justify-content: center;
+        border-radius: 10px;
+       h5{
+        font-family: 'Kumbh Sans';
+        font-weight: 700;
+        font-size: 16px;
+        width: 100px;
+        padding-top: 15px;
+        
+       }
+       img{
+        width: 17.46px;
+        height: 16px;
+        padding-top: 15px;
+        
+       }
+    
+    }
+    .basket:active{
+        opacity: 0.5;
+    }
+    
+    
+}     */
