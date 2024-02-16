@@ -292,7 +292,3 @@ async function alinanUrunKadarFiyat(){
 changeHTML();
 
 
-// <img src="${product.images[2]}">
-// <img src="${product.images[3]}">
-// <img src="${product.images[4]}">
-/* <img src="assets/img/icon-cart.svg"> */
