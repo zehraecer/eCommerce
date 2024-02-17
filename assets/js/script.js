@@ -1,8 +1,8 @@
 const tiklananUrunId = JSON.parse(localStorage.getItem("idgetir")) || [];
 let tiklananUrun1;
 
-async function getData(){
-        const response = await fetch("https://dummyjson.com/products?limit=100")
+async function getProduct(yeniId){
+        const response = await fetch(`https://dummyjson.com/products/${yeniId}`)
         const data =  await response.json();
         // console.log(data);
         return data;
@@ -21,10 +21,10 @@ async function localeKaydedildiMi(){
 }
 
 async function changeHTML(){
-  let yeniId =  await localeKaydedildiMi()
-  const response = await fetch(`https://dummyjson.com/products/${yeniId}`)
-  const product =  await response.json()
-     container.innerHTML += `
+  const yeniId = localStorage.getItem('idgetir')
+  const product = await getProduct(yeniId)
+  // const product =  await response.json()
+     container.innerHTML = `
     <div class="header">
         <div class="header-navBar">
             <img src="assets/img/sneakers.png">
@@ -46,7 +46,7 @@ async function changeHTML(){
     <div class="myDiv-left">
 
         <div class="bigFoto">
-                <img src="${product.images[0]}" >
+        <img src="${product.images[0]}"> 
         </div>
 
         <div class="smallFotos">
@@ -132,9 +132,10 @@ const bigFotoCarousel = document.querySelector(".carousel-bigFoto")
 const smallFotoCarousel = document.querySelector(".carousel-smallFotos")
 
 async function myCaorusel(){
-  let yeniId =  await localeKaydedildiMi()
-  const response = await fetch(`https://dummyjson.com/products/${yeniId}`)
-  const product =  await response.json()
+  const response = await getProduct()
+  const product = await response.json();
+  console.log(product);
+
   const imgs = product.images
   for (const img of imgs) {
     smallFotoCarousel.innerHTML += `
@@ -150,40 +151,41 @@ async function myCaorusel(){
                   <span>></span>
                 </div>`
 
-
-}
-              
-              
-              
-const geribtn = document.querySelector(".geri")
-geribtn.addEventListener("click", birOncekiFoto)
- function birOncekiFoto(){
-  console.log("gfd");
- }
-
-
-
-const ileriBtn = document.querySelectorAll(".ileri")
-ileriBtn.addEventListener("click", birSonrakiFoto)
-async function birSonrakiFoto(){
-  let yeniId =  await localeKaydedildiMi()
-  const response = await fetch(`https://dummyjson.com/products/${yeniId}`)
-  const product =  await response.json()
-  const imgs = product.images
-  for(let i = 0; i < imgs.length; i++){
-    bigFotoCarousel.innerHTML = `    
-        <div class="geri">
-        <span><</span>
-      </div> 
-      <img src="${imgs[i]}">
-      <div class="ileri">
-        <span>></span>
-      </div>
-    `
-  }
-
-}
 myCaorusel();
+
+ const geribtn = document.querySelector(".geri")
+                                
+geribtn.addEventListener("click", birOncekiFoto)
+    function birOncekiFoto(){
+     console.log("gfd");
+}
+const ileriBtn = document.querySelectorAll(".ileri")                              
+ileriBtn.addEventListener("click", birSonrakiFoto)
+
+
+}
+async function birSonrakiFoto(){
+ let yeniId =  await localeKaydedildiMi()
+const response = await fetch(`https://dummyjson.com/products/${yeniId}`)
+const product =  await response.json()
+ const imgs = product.images
+ for(let i = 0; i < imgs.length; i++){
+    bigFotoCarousel.innerHTML = `    
+            <div class="geri">
+                  <span><</span>
+             </div> 
+              <img src="${imgs[i]}">
+              <div class="ileri">
+                  <span>></span>
+              </div>
+                    `}
+                
+}
+                
+                
+                
+                
+                
 
 
 

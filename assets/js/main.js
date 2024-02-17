@@ -1,5 +1,4 @@
 const BASE_URL = "https://dummyjson.com";
-let tiklananurun = JSON.parse(localStorage.getItem("idgetir")) || null;
 
 
 async function getItems(endpoint){
@@ -20,7 +19,7 @@ async function listItems(){
         homePage.innerHTML += `
         <a href="index.html">  <div data-id="${product.id}" class="myHtml">
         <h5 data-id="${product.id}">${product.description}</h5>
-        <img src="${product.images[0]}">
+        <img data-id="${product.id}" src="${product.images[0]}">
         <h4 data-id="${product.id}">${product.category}</h4>     
         <h2 data-id="${product.id}">${product.price}$</h2>
         
@@ -36,11 +35,11 @@ async function listItems(){
     }
 }
 
-
+8
 
 function idGetir(e){
     console.log(e.target.dataset.id);
-    tiklananurun = e.target.dataset.id 
+    let tiklananurun = Number(e.target.dataset.id )
     localStorage.setItem("idgetir",JSON.stringify(tiklananurun))
 }
 

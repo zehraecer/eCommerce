@@ -53,7 +53,6 @@ function deleteProduct(e){
 async function listProducts(){
   const items = await getItems("products");
   const products = items.products;
-  console.log(products);
   for (const product of products) {
     productsBox.innerHTML += `<li data-productid="${product.id}"><p>${product.title}</p> <div class="buttons"><button data-productid="${product.id}" class="edit-btn">Düzenle</button> <button data-productid="${product.id}" class="delete-btn">Sil</button></div></li>`
   }
