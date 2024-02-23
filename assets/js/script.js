@@ -165,58 +165,36 @@ async function myCaorusel(){
              
              const FotoBigCarousel = document.querySelector(".bigFotoCarousel")
              const ileriBtns = document.querySelectorAll(".ileri")
-             let bigFotoFongusu = 0;
+             const geriBtns = document.querySelectorAll(".geri")
+             let bigFotoDongusu = 0;
+
              ileriBtns.forEach(function (btn) {
               btn.addEventListener("click", async function () {
                 FotoBigCarousel.innerHTML=""
                 const yeniId = localStorage.getItem('idgetir')
                   const product = await getProduct(yeniId)
                   const imgs = product.images
-                  bigFotoFongusu = (bigFotoFongusu + 1) % imgs.length;
-                    FotoBigCarousel.innerHTML+=`<img  src="${imgs[bigFotoFongusu]}">`
+                  bigFotoDongusu = (bigFotoDongusu + 1) % imgs.length;
+                    FotoBigCarousel.innerHTML+=`<img  src="${imgs[bigFotoDongusu]}">`
                     
               });
           });
+
+              geriBtns.forEach(function (btn){
+                btn.addEventListener("click", async function(){
+                  FotoBigCarousel.innerHTML=""
+                  const yeniId = localStorage.getItem('idgetir')
+                      const product = await getProduct(yeniId)
+                      const imgs = product.images
+                      bigFotoDongusu = (bigFotoDongusu - 1) % imgs.length;
+                      FotoBigCarousel.innerHTML+=`<img  src="${imgs[bigFotoDongusu]}">`
+                } )
+              })
 }
             
 myCaorusel();
 
 
-// async function birSonrakiFoto(){
-//    const yeniId = localStorage.getItem('idgetir')
-//    const product = await getProduct(yeniId)
-//    const imgs = product.images
-//   console.log(imgs);
-//   for(let i = 0; i < imgs.length; i++){
-//      bigFotoCarousel.innerHTML = `    
-//              <div class="geri">
-//                    <span><</span>
-//               </div> 
-//                <img src="${imgs[i]}">
-//                <div class="ileri">
-//                    <span>></span>
-//                </div>
-//                      `}
-//     bindEvents()
-//  }
-               
-// async function bindEvents(){
-//   const ileriBtns = document.querySelectorAll(".ileri")  
-//   const geriBtns = document.querySelectorAll(".geri")
-
-
-//   for (const geriBtn of geriBtns) {
-//     geriBtn.addEventListener("click", birOncekiFoto)
-//     console.log(geriBtn);
-//    }
-
-//    for (const ileriBtn of ileriBtns) {
-//     ileriBtn.addEventListener("click", birSonrakiFoto)
-//     console.log(ileriBtn);
-//    }
-
-// }               
-                
 
 
 
