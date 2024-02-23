@@ -113,10 +113,10 @@ bigFoto.addEventListener("click", caroselShow)
 carouselKapat.addEventListener("click",carouselKapali)
 
 
+
 async function fotolar(){
-  let yeniId =  await localeKaydedildiMi()
-  const response = await fetch(`https://dummyjson.com/products/${yeniId}`)
-  const product =  await response.json()
+  const yeniId = localStorage.getItem('idgetir')
+  const product = await getProduct(yeniId)
   const imgs = product.images
   for (const img of imgs) {
         fotos.innerHTML += `
@@ -124,69 +124,89 @@ async function fotolar(){
     `
   }
 }
+
 fotolar();
+
+
 }
 
 const carousel = document.querySelector(".dialog-carousel")
 const bigFotoCarousel = document.querySelector(".carousel-bigFoto")
 const smallFotoCarousel = document.querySelector(".carousel-smallFotos")
+  
+             
+
 
 async function myCaorusel(){
-  const response = await getProduct()
-  const product = await response.json();
-  console.log(product);
-
+  const yeniId = localStorage.getItem('idgetir')
+  const product = await getProduct(yeniId)
   const imgs = product.images
   for (const img of imgs) {
     smallFotoCarousel.innerHTML += `
       <img src="${img}">  
     `
-  }
-  bigFotoCarousel.innerHTML = `
-                <div class="geri">
-                  <span><</span>
-                </div> 
-                <img src="${product.images[0]}">
-                <div class="ileri">
-                  <span>></span>
-                </div>`
+   }
+     bigFotoCarousel.innerHTML = `
+             <div class="geri">
+                  <span>
+                  <
+                  </span>
+             </div> 
+             <img src="${product.images[0]}">
+             <div class="ileri">
+             <span>
+             >
+             </span>
+             </div>`
 
+
+             
+             
+             const ileriBtns = document.querySelectorAll(".ileri")
+             console.log(ileriBtns);
+             ileriBtns.addEventListener("click", function(){
+              console.log("dsjghfdjkg");
+             })
+}
+            
 myCaorusel();
 
- const geribtn = document.querySelector(".geri")
-                                
-geribtn.addEventListener("click", birOncekiFoto)
-    function birOncekiFoto(){
-     console.log("gfd");
-}
-const ileriBtn = document.querySelectorAll(".ileri")                              
-ileriBtn.addEventListener("click", birSonrakiFoto)
+
+// async function birSonrakiFoto(){
+//    const yeniId = localStorage.getItem('idgetir')
+//    const product = await getProduct(yeniId)
+//    const imgs = product.images
+//   console.log(imgs);
+//   for(let i = 0; i < imgs.length; i++){
+//      bigFotoCarousel.innerHTML = `    
+//              <div class="geri">
+//                    <span><</span>
+//               </div> 
+//                <img src="${imgs[i]}">
+//                <div class="ileri">
+//                    <span>></span>
+//                </div>
+//                      `}
+//     bindEvents()
+//  }
+               
+// async function bindEvents(){
+//   const ileriBtns = document.querySelectorAll(".ileri")  
+//   const geriBtns = document.querySelectorAll(".geri")
 
 
-}
-async function birSonrakiFoto(){
- let yeniId =  await localeKaydedildiMi()
-const response = await fetch(`https://dummyjson.com/products/${yeniId}`)
-const product =  await response.json()
- const imgs = product.images
- for(let i = 0; i < imgs.length; i++){
-    bigFotoCarousel.innerHTML = `    
-            <div class="geri">
-                  <span><</span>
-             </div> 
-              <img src="${imgs[i]}">
-              <div class="ileri">
-                  <span>></span>
-              </div>
-                    `}
-                
-}
-                
-                
-                
-                
-                
+//   for (const geriBtn of geriBtns) {
+//     geriBtn.addEventListener("click", birOncekiFoto)
+//     console.log(geriBtn);
+//    }
 
+//    for (const ileriBtn of ileriBtns) {
+//     ileriBtn.addEventListener("click", birSonrakiFoto)
+//     console.log(ileriBtn);
+//    }
+
+// }               
+                
 
 
 
@@ -200,41 +220,41 @@ function caroselShow(){
 
 
 
-const canvasOpen = document.querySelector(".canvasOpen")
+// const canvasOpen = document.querySelector(".canvasOpen")
 
+//   function openNav(){
+//   const canvasOpen = document.querySelector(".canvasOpen")
+//   canvasOpen.classList.add("openCanvas")
+// }
 
-
-
-function openNav(){
-const canvasOpen = document.querySelector(".canvasOpen")
-  canvasOpen.classList.add("openCanvas")
-}
-
-async function guncelSepet(){
-  let yeniId =  await localeKaydedildiMi()
-  const response = await fetch(`https://dummyjson.com/products/${yeniId}`)
-  const product =  await response.json()
-  const fiyat = product.price
-     canvasOpen.innerHTML += `
-     <h1  class="cart" >Cart</h1>
-     <img src="${product.images[0]}" >
-     <h2 class="canvas-model
-     ">${product.brand}</h2>
-     <h1 class="canvas-fiyat" >${fiyat}</h1>
-     <h2 class="canvas-title">${product.title}</h2>
+// async function guncelSepet(){
+//   let yeniId =  await localeKaydedildiMi()
+//   const response = await fetch(`https://dummyjson.com/products/${yeniId}`)
+//   const product =  await response.json()
+//   const fiyat = product.price
+//      canvasOpen.innerHTML += `
+//      <h1  class="cart" >Cart</h1>
+//      <img src="${product.images[0]}" >
+//      <h2 class="canvas-model
+//      ">${product.brand}</h2>
+//      <h1 class="canvas-fiyat" >${fiyat}</h1>
+//      <h2 class="canvas-title">${product.title}</h2>
      
-     `
+//      `
 
 
-}
-guncelSepet();
+// }
+// guncelSepet();
 
 function indirimUygula(){
     const ilkFiyat = document.querySelector("h4")
     const sonFiyat = document.querySelector(".discounted-price h3")
+    const indirim = document.querySelector(".discounte").textContent
+    console.log(Math.ceil(indirim));
       ilkFiyat.classList.add("cizgi")
-      const sonuc = ilkFiyat.textContent / 2;
-       sonFiyat.innerHTML=`${sonuc}`
+      const sonuc = ((100-indirim) / 100) * ilkFiyat.textContent;
+      console.log(sonuc);
+       sonFiyat.innerHTML=`${Math.floor(sonuc)}`
 }  
 
 
@@ -246,18 +266,10 @@ function closeDialog(){
   myDialog.close();
 }
 
-
-
 function sepeteEklendi(){
-  myDialog.showModal()
-  console.log("dıoghdfoıgh");
+    myDialog.showModal()
+    console.log("dıoghdfoıgh");
 }
-
-
-
-
-
-
 
 function UrunAzalt(){
    const toplamAdet = document.querySelector(".total h5")
@@ -267,14 +279,11 @@ function UrunAzalt(){
   alinanUrunKadarFiyat()
 }
 
-
 function UrunArtır(){
   const toplamAdet = document.querySelector(".total h5")
   toplamAdet.textContent =parseInt(toplamAdet.textContent) + 1;  
   alinanUrunKadarFiyat()
 }
-
-
 
 async function alinanUrunKadarFiyat(){
   let yeniId =  await localeKaydedildiMi()
