@@ -152,7 +152,9 @@ async function myCaorusel(){
                   <
                   </span>
              </div> 
-             <img src="${product.images[0]}">
+             <div class="bigFotoCarousel">
+             <img  src="${product.images[0]}">
+             </div>
              <div class="ileri">
              <span>
              >
@@ -161,12 +163,20 @@ async function myCaorusel(){
 
 
              
-             
+             const FotoBigCarousel = document.querySelector(".bigFotoCarousel")
              const ileriBtns = document.querySelectorAll(".ileri")
-             console.log(ileriBtns);
-             ileriBtns.addEventListener("click", function(){
-              console.log("dsjghfdjkg");
-             })
+             let bigFotoFongusu = 0;
+             ileriBtns.forEach(function (btn) {
+              btn.addEventListener("click", async function () {
+                FotoBigCarousel.innerHTML=""
+                const yeniId = localStorage.getItem('idgetir')
+                  const product = await getProduct(yeniId)
+                  const imgs = product.images
+                  bigFotoFongusu = (bigFotoFongusu + 1) % imgs.length;
+                    FotoBigCarousel.innerHTML+=`<img  src="${imgs[bigFotoFongusu]}">`
+                    
+              });
+          });
 }
             
 myCaorusel();
